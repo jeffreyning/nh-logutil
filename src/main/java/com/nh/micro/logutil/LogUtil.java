@@ -194,7 +194,11 @@ public class LogUtil {
 		Throwable throwable = new Throwable();
 		String parentClsName = getParentCls(throwable);
 		Logger logger = getLogger(parentClsName);
-		logger.debug(info, args);
+
+		//check
+		if(logger.isDebugEnabled()) {
+			logger.debug(info, args);
+		}
 	}
 
 	private static String createMsg(Map params) {
