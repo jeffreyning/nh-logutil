@@ -37,6 +37,7 @@ public class LogUtil {
 	private static ConcurrentMap logHolder = new ConcurrentHashMap();
 	private static String msgTag = "|+|";
 	private static Boolean startDebug = false;
+	public static Integer rollNum=30;
 
 	public static void initLogContext(String rootDir, Boolean startDebug) {
 		LogUtil.startDebug = startDebug;
@@ -62,7 +63,7 @@ public class LogUtil {
 
 		TimeBasedRollingPolicy rollingPolicy = new TimeBasedRollingPolicy();
 		rollingPolicy.setFileNamePattern(logPathHistory);
-		rollingPolicy.setMaxHistory(10);
+		rollingPolicy.setMaxHistory(rollNum);
 		rollingPolicy.setContext(loggerContext);
 		rollingPolicy.setParent(rollingFileAppender);
 		rollingPolicy.start();
@@ -77,7 +78,7 @@ public class LogUtil {
 
 		TimeBasedRollingPolicy rollingPolicy4Api = new TimeBasedRollingPolicy();
 		rollingPolicy4Api.setFileNamePattern(apilogPathHistory);
-		rollingPolicy4Api.setMaxHistory(10);
+		rollingPolicy4Api.setMaxHistory(rollNum);
 		rollingPolicy4Api.setContext(loggerContext);
 		rollingPolicy4Api.setParent(rollingFileAppender4Api);
 
@@ -93,7 +94,7 @@ public class LogUtil {
 
 		TimeBasedRollingPolicy rollingPolicy4Error = new TimeBasedRollingPolicy();
 		rollingPolicy4Error.setFileNamePattern(errorlogPathHistory);
-		rollingPolicy4Error.setMaxHistory(10);
+		rollingPolicy4Error.setMaxHistory(rollNum);
 		rollingPolicy4Error.setContext(loggerContext);
 		rollingPolicy4Error.setParent(rollingFileAppender4Error);
 
