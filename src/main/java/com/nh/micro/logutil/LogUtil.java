@@ -187,6 +187,7 @@ public class LogUtil {
 		Throwable throwable = new Throwable();
 		String parentClsName = getParentCls(throwable);
 		Logger logger = getLogger(parentClsName);
+
 		logger.info(info, args);
 	}
 
