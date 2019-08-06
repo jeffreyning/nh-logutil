@@ -38,6 +38,14 @@ public class LogUtil {
 	private static String msgTag = "|+|";
 	private static Boolean startDebug = false;
 	public static Integer rollNum=30;
+	public static String innerPattern = "%d{yyyy-MM-dd HH:mm:ss.SSS} |  %-5level | [%-15thread] | %replace(%caller{1..2}){'\t|Caller.{1}1|\n" +
+			"| at ', ''} | --[LOGUTIL]-- %msg%n";
+	public static String apiPattern="%d{yyyy-MM-dd HH:mm:ss.SSS} |  %-5level | [%-15thread] | %replace(%caller{2..3}){'\t|Caller.{1}2|\n" +
+			"| at ', ''} | --[LOGUTIL]-- %msg%n";
+	public static String consolePattern="%d{yyyy-MM-dd HH:mm:ss.SSS} |  %-5level | [%-15thread] | %replace(%caller{1..2}){'\t|Caller.{1}1|\n" +
+			"| at ', ''} | --[LOGUTIL]-- %msg%n";
+	public static String errorPattern="%d{yyyy-MM-dd HH:mm:ss.SSS} |  %-5level | [%-15thread] | %replace(%caller{2..3}){'\t|Caller.{1}2|\n" +
+			"| at ', ''} | --[LOGUTIL]-- %msg%n";
 
 	public static void initLogContext(String rootDir, Boolean startDebug) {
 		LogUtil.startDebug = startDebug;
@@ -102,28 +110,32 @@ public class LogUtil {
 		rollingFileAppender4Error.setRollingPolicy(rollingPolicy4Error);
 
 		PatternLayoutEncoder encoder = new PatternLayoutEncoder();
-		encoder.setPattern(
-				"%d{yyyy-MM-dd HH:mm:ss.SSS} |  %-5level | [%-15thread] | %replace(%caller{1..2}){'\t|Caller.{1}1|\r\n| at ', ''} | --[LOGUTIL]-- %msg%n");
+/*		encoder.setPattern(
+				"%d{yyyy-MM-dd HH:mm:ss.SSS} |  %-5level | [%-15thread] | %replace(%caller{1..2}){'\t|Caller.{1}1|\r\n| at ', ''} | --[LOGUTIL]-- %msg%n");*/
+		encoder.setPattern(innerPattern);
 		encoder.setCharset(Charset.forName("UTF-8"));
 		encoder.setContext(loggerContext);
 		encoder.start();
 		PatternLayoutEncoder encoder4Api = new PatternLayoutEncoder();
-		encoder4Api.setPattern(
-				"%d{yyyy-MM-dd HH:mm:ss.SSS} |  %-5level | [%-15thread] | %replace(%caller{2..3}){'\t|Caller.{1}2|\r\n| at ', ''} | --[LOGUTIL]-- %msg%n");
+/*		encoder4Api.setPattern(
+				"%d{yyyy-MM-dd HH:mm:ss.SSS} |  %-5level | [%-15thread] | %replace(%caller{2..3}){'\t|Caller.{1}2|\r\n| at ', ''} | --[LOGUTIL]-- %msg%n");*/
+		encoder4Api.setPattern(apiPattern);
 		encoder4Api.setCharset(Charset.forName("UTF-8"));
 		encoder4Api.setContext(loggerContext);
 		encoder4Api.start();
 
 		PatternLayoutEncoder encoder4Console = new PatternLayoutEncoder();
-		encoder4Console.setPattern(
-				"%d{yyyy-MM-dd HH:mm:ss.SSS} |  %-5level | [%-15thread] | %replace(%caller{1..2}){'\t|Caller.{1}1|\r\n| at ', ''} | --[LOGUTIL]-- %msg%n");
+/*		encoder4Console.setPattern(
+				"%d{yyyy-MM-dd HH:mm:ss.SSS} |  %-5level | [%-15thread] | %replace(%caller{1..2}){'\t|Caller.{1}1|\r\n| at ', ''} | --[LOGUTIL]-- %msg%n");*/
+		encoder4Console.setPattern(consolePattern);
 		encoder4Console.setCharset(Charset.forName("UTF-8"));
 		encoder4Console.setContext(loggerContext);
 		encoder4Console.start();
 
 		PatternLayoutEncoder encoder4Error = new PatternLayoutEncoder();
-		encoder4Error.setPattern(
-				"%d{yyyy-MM-dd HH:mm:ss.SSS} |  %-5level | [%-15thread] | %replace(%caller{2..3}){'\t|Caller.{1}2|\r\n| at ', ''} | --[LOGUTIL]-- %msg%n");
+/*		encoder4Error.setPattern(
+				"%d{yyyy-MM-dd HH:mm:ss.SSS} |  %-5level | [%-15thread] | %replace(%caller{2..3}){'\t|Caller.{1}2|\r\n| at ', ''} | --[LOGUTIL]-- %msg%n");*/
+		encoder4Error.setPattern(errorPattern);
 		encoder4Error.setCharset(Charset.forName("UTF-8"));
 		encoder4Error.setContext(loggerContext);
 		encoder4Error.start();

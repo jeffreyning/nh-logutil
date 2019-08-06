@@ -6,12 +6,12 @@
 
     <groupId>com.github.jeffreyning</groupId>
     <artifactId>nh-logutil</artifactId>
-    <version>1.0.0-RELEASE</version>
+    <version>1.0.1-RELEASE</version>
     <name>com.github.jeffreyning:nh-logutil</name>
     <description>nh-logutil</description>
     <url>https://github.com/jeffreyning/nh-logutil</url>
     <properties>
-        <project.release.version>1.0.0-RELEASE</project.release.version>
+        <project.release.version>1.0.1-RELEASE</project.release.version>
     </properties>
 
     <dependencies>
